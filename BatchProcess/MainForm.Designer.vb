@@ -25,9 +25,10 @@ Partial Class MainForm
         Me.ButtonGo = New System.Windows.Forms.Button()
         Me.ButtonSourceFolder = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.LabelExportFormat = New System.Windows.Forms.Label()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxRecursiveSource = New System.Windows.Forms.CheckBox()
+        Me.CheckOverwriteOutput = New System.Windows.Forms.CheckBox()
         Me.TextBoxSourceFolder = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -35,7 +36,6 @@ Partial Class MainForm
         Me.ButtonDestinationFolder = New System.Windows.Forms.Button()
         Me.FolderBrowserDialogSource = New System.Windows.Forms.FolderBrowserDialog()
         Me.FolderBrowserDialogDestination = New System.Windows.Forms.FolderBrowserDialog()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -59,16 +59,25 @@ Partial Class MainForm
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.LabelExportFormat)
         Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Controls.Add(Me.CheckBox2)
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
+        Me.GroupBox1.Controls.Add(Me.CheckBoxRecursiveSource)
+        Me.GroupBox1.Controls.Add(Me.CheckOverwriteOutput)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 161)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(404, 254)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Options"
+        '
+        'LabelExportFormat
+        '
+        Me.LabelExportFormat.AutoSize = True
+        Me.LabelExportFormat.Location = New System.Drawing.Point(56, 23)
+        Me.LabelExportFormat.Name = "LabelExportFormat"
+        Me.LabelExportFormat.Size = New System.Drawing.Size(85, 13)
+        Me.LabelExportFormat.TabIndex = 4
+        Me.LabelExportFormat.Text = "Export file format"
         '
         'ComboBox1
         '
@@ -79,25 +88,25 @@ Partial Class MainForm
         Me.ComboBox1.Size = New System.Drawing.Size(48, 21)
         Me.ComboBox1.TabIndex = 3
         '
-        'CheckBox2
+        'CheckBoxRecursiveSource
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(6, 43)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(196, 17)
-        Me.CheckBox2.TabIndex = 1
-        Me.CheckBox2.Text = "Select sub-files within Source Folder"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.CheckBoxRecursiveSource.AutoSize = True
+        Me.CheckBoxRecursiveSource.Location = New System.Drawing.Point(6, 47)
+        Me.CheckBoxRecursiveSource.Name = "CheckBoxRecursiveSource"
+        Me.CheckBoxRecursiveSource.Size = New System.Drawing.Size(130, 17)
+        Me.CheckBoxRecursiveSource.TabIndex = 1
+        Me.CheckBoxRecursiveSource.Text = "Select files recursively"
+        Me.CheckBoxRecursiveSource.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'CheckOverwriteOutput
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 66)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(125, 17)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Overwrite output files"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CheckOverwriteOutput.AutoSize = True
+        Me.CheckOverwriteOutput.Location = New System.Drawing.Point(6, 70)
+        Me.CheckOverwriteOutput.Name = "CheckOverwriteOutput"
+        Me.CheckOverwriteOutput.Size = New System.Drawing.Size(125, 17)
+        Me.CheckOverwriteOutput.TabIndex = 0
+        Me.CheckOverwriteOutput.Text = "Overwrite output files"
+        Me.CheckOverwriteOutput.UseVisualStyleBackColor = True
         '
         'TextBoxSourceFolder
         '
@@ -144,15 +153,6 @@ Partial Class MainForm
         Me.ButtonDestinationFolder.Text = "Click to select"
         Me.ButtonDestinationFolder.UseVisualStyleBackColor = True
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(56, 23)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(85, 13)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Export file format"
-        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -177,7 +177,7 @@ Partial Class MainForm
     Friend WithEvents ButtonGo As System.Windows.Forms.Button
     Friend WithEvents ButtonSourceFolder As System.Windows.Forms.Button
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckOverwriteOutput As System.Windows.Forms.CheckBox
     Friend WithEvents TextBoxSourceFolder As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
@@ -185,7 +185,7 @@ Partial Class MainForm
     Friend WithEvents ButtonDestinationFolder As System.Windows.Forms.Button
     Friend WithEvents FolderBrowserDialogSource As System.Windows.Forms.FolderBrowserDialog
     Friend WithEvents FolderBrowserDialogDestination As System.Windows.Forms.FolderBrowserDialog
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBoxRecursiveSource As System.Windows.Forms.CheckBox
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents LabelExportFormat As System.Windows.Forms.Label
 End Class
