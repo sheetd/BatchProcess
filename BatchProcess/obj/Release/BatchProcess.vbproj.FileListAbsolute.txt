@@ -1,0 +1,16 @@
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\bin\Release\BatchProcess.exe.config
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\Interop.DRAFTINGITF.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\Interop.INFITF.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\Interop.KnowledgewareTypeLib.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\Interop.MECMOD.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\Interop.ProductStructureTypeLib.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.vbproj.ResolveComReference.cache
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\bin\Release\BatchProcess.exe
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\bin\Release\BatchProcess.pdb
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\bin\Release\BatchProcess.xml
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.MainForm.resources
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.Resources.resources
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.vbproj.GenerateResource.Cache
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.exe
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.xml
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Release\BatchProcess.pdb

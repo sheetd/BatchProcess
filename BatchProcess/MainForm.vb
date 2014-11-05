@@ -1,23 +1,32 @@
 ﻿Imports INFITF
 Imports DRAFTINGITF
+Imports MECMOD
 
 Public Class MainForm
 
+    'Set-up
     Public CATIA As INFITF.Application
-    Public SrcFolder As String
-    Public DestFolder As String
+    Public PathSource As String
+    Public PathDest As String
 
-    Private Sub Main()
+    Public Sub Main()
+
         CATIA = GetObject(, "CATIA.Application")
-        Call ProcessUserform()
+
+        'Process Forms
+        PathSource = FolderBrowserDialogSource.SelectedPath
+        PathDest = FolderBrowserDialogDestination.SelectedPath
+
+        'Check for folder locations
+        If PathDest = "" Then
+            PathDest = PathSource
+            'MsgBox("Please select a destination path", vbCritical, "Error")
+            'Environment.Exit(0)
+        End If
+
     End Sub
 
-    Private Sub ButtonGo_Click(sender As Object, e As EventArgs) Handles ButtonGo.Click
-        Me.Hide()
-        Call Main()
-        Me.Show()
-    End Sub
-
+    'Userforms
     Private Sub ButtonSourceFolder_Click(sender As Object, e As EventArgs) Handles ButtonSourceFolder.Click
         'Set folder path with dialog box
         If FolderBrowserDialogSource.ShowDialog() = DialogResult.OK Then
@@ -32,45 +41,183 @@ Public Class MainForm
         End If
     End Sub
 
-    Public Sub ProcessUserform()
-        SrcFolder = Me.FolderBrowserDialogSource.SelectedPath
-        DestFolder = Me.FolderBrowserDialogDestination.SelectedPath
+    Private Sub ButtonDrawingsGo_Click(sender As Object, e As EventArgs) Handles ButtonDrawingsGo.Click
+        Me.Hide()
+        Call Main()
+        Call ProcessFiles(".CATDrawing")
+        Me.Show()
+    End Sub
 
+    Private Sub ButtonPartsGo_Click(sender As Object, e As EventArgs) Handles ButtonPartsGo.Click
+        Me.Hide()
+        Call Main()
+        Call ProcessFiles(".CATPart")
+        Me.Show()
+    End Sub
+
+    Private Sub CheckBoxSourceOverwrite_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxSourceOverwrite.CheckedChanged
+        'Hide Dest button if option checked
+        If CheckBoxSourceOverwrite.Checked = True Then
+            ButtonDestinationFolder.Enabled = False
+        Else
+            ButtonDestinationFolder.Enabled = True
+            FolderBrowserDialogDestination.SelectedPath = ""
+        End If
+    End Sub
+
+    'File Handling
+    Public Sub ProcessFiles(FileExtension As String)
+
+        'Process files
         Dim FS 'As FileSystem
         FS = CATIA.FileSystem
 
         Dim ExistDir As Folder
-        ExistDir = FS.GetFolder(SrcFolder)
+        ExistDir = FS.GetFolder(PathSource)
 
-        For X = 1 To ExistDir.Files.Count
+        For i = 1 To ExistDir.Files.Count
             Dim CurFile As File
-            CurFile = ExistDir.Files.Item(X)
+            CurFile = ExistDir.Files.Item(i)
 
-            If InStr(CurFile.Name, ".CATDrawing") <> 0 Then
+            If InStr(CurFile.Name, FileExtension) <> 0 Then
                 Dim AvailDocs As Documents
                 AvailDocs = CATIA.Documents
                 AvailDocs.Open(CurFile.Path)
                 CATIA.RefreshDisplay = True
-                Call ExportDWG()
+                FileActions()
             End If
 
-        Next X
+        Next i
+
+        'Process sub-files
+        If CheckBoxSourceRecursive.Checked = True Then
+            For j = 1 To ExistDir.SubFolders.Count
+                Dim CF As Folder
+                CF = ExistDir.SubFolders.Item(j)
+                ProcessSubfiles(CF, FileExtension)
+            Next j
+        End If
+
     End Sub
 
-    Public Sub ExportDWG()
+    Public Sub ProcessSubfiles(CurFolder As Folder, FileExtension As String)
+
+        For X = 1 To CurFolder.Files.Count
+            Dim CurFile As File
+            CurFile = CurFolder.Files.Item(X)
+
+            If InStr(CurFile.Name, FileExtension) <> 0 Then
+                Dim AvailDocs As Documents
+                AvailDocs = CATIA.Documents
+                AvailDocs.Open(CurFile.Path)
+                CATIA.RefreshDisplay = True
+                FileActions()
+            End If
+        Next X
+
+        For Y = 1 To CurFolder.SubFolders.Count
+            Dim CF As Folder
+            CF = CurFolder.SubFolders.Item(Y)
+            ProcessSubfiles(CF, FileExtension)
+        Next
+
+    End Sub
+
+    Public Sub FileActions()
+
+        'Drawings
+        If CheckBoxDrawingUpdate.Checked = True Then
+            Call DrawingUpdate()
+        End If
+
+        If CheckBoxDrawingExport.Checked = True Then
+            Call DrawingExport(ComboBoxDrawingExport.Text)
+        End If
+
+        'Parts
+        If CheckBoxPartUpdate.Checked = True Then
+            Call PartUpdate()
+        End If
+
+        'Close the window
+        Dim ActiveDoc As Document
+        ActiveDoc = CATIA.ActiveDocument
+        ActiveDoc.Close()
+
+    End Sub
+
+    Public Sub DrawingUpdate()
+
+        'Force update sheets within drawing
         Dim MyDrawing As DrawingDocument
         MyDrawing = CATIA.ActiveDocument
 
-        'Clean-up file name
+        Dim SavePath As String
+        SavePath = PathDest & "\" & MyDrawing.Name
+
+        For i = 1 To MyDrawing.Sheets.Count
+            MyDrawing.Sheets.Item(i).ForceUpdate()
+        Next i
+
+        'Save drawing
+        If PathSource = PathDest Then
+            MyDrawing.Save()
+        Else
+            MyDrawing.SaveAs(SavePath)
+            'Option for save as new .CATDrawing? (change UUID)
+        End If
+
+    End Sub
+
+    Public Sub DrawingExport(FileType As String)
+
+        'Export drawing to a specified format (dwx/dxf/pdf)
+        Dim MyDrawing As DrawingDocument
+        MyDrawing = CATIA.ActiveDocument
+
         Dim FileName As String
-        FileName = Replace(MyDrawing.Name, ".CATDrawing", ".dwg")
+        FileName = Replace(MyDrawing.Name, ".CATDrawing", "." & FileType)
 
         Dim SavePath As String
-        SavePath = DestFolder & "\" & FileName
+        SavePath = PathDest & "\" & FileName
 
-        'Export File & Close
-        MyDrawing.ExportData(SavePath, "dwg")
-        MyDrawing.Close()
+        'Export file (cannot export drawings to same folder path currently)
+        If PathSource = PathDest Then
+            MsgBox("Cannot export drawings to same folder as source. Please select an Output destination", vbCritical, "Error")
+            Environment.Exit(0)
+        Else
+            MyDrawing.ExportData(SavePath, FileType)
+        End If
+
+    End Sub
+
+    Public Sub PartUpdate()
+
+        'Updates Part & Save
+        Dim MyDoc As PartDocument
+        MyDoc = CATIA.ActiveDocument
+
+        Dim MyPart As Part
+        MyPart = MyDoc.Part
+
+        Dim FileName As String
+        FileName = MyPart.Name & ".CATPart"
+
+        Dim SavePath As String
+        SavePath = PathDest & "\" & FileName
+
+        MyPart.Update()
+
+        'Save file
+        If PathSource = PathDest Then
+            MyDoc.Save()
+        Else
+            MyDoc.SaveAs(SavePath)
+            'Option for save as new .CATPart? (change UUID)
+        End If
+
+        'MyDoc.Close()
+
     End Sub
 
 End Class

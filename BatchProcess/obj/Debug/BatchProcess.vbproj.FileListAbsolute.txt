@@ -4,6 +4,9 @@ C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\bin\Debug\BatchProcess.pdb
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\bin\Debug\BatchProcess.xml
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\Interop.DRAFTINGITF.dll
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\Interop.INFITF.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\Interop.KnowledgewareTypeLib.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\Interop.MECMOD.dll
+C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\Interop.ProductStructureTypeLib.dll
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.vbproj.ResolveComReference.cache
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.MainForm.resources
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.Resources.resources
