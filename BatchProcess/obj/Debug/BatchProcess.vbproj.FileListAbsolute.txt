@@ -14,3 +14,29 @@ C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.vbpr
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.exe
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.xml
 C:\Users\NMeredith\Desktop\BatchProcess\BatchProcess\obj\Debug\BatchProcess.pdb
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\bin\Debug\BatchProcess.exe.config
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.DRAFTINGITF.dll
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.INFITF.dll
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.KnowledgewareTypeLib.dll
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.MECMOD.dll
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.ProductStructureTypeLib.dll
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.vbproj.ResolveComReference.cache
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.exe
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.xml
+E:\OneDrive - MG McGrath, Inc-\Documents\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.pdb
+D:\GitHub\BatchProcess\BatchProcess\bin\Debug\BatchProcess.exe.config
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.DRAFTINGITF.dll
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.INFITF.dll
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.KnowledgewareTypeLib.dll
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.MECMOD.dll
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\Interop.ProductStructureTypeLib.dll
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.vbproj.ResolveComReference.cache
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.exe
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.xml
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.pdb
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.MainForm.resources
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.Resources.resources
+D:\GitHub\BatchProcess\BatchProcess\obj\Debug\BatchProcess.vbproj.GenerateResource.Cache
+D:\GitHub\BatchProcess\BatchProcess\bin\Debug\BatchProcess.exe
+D:\GitHub\BatchProcess\BatchProcess\bin\Debug\BatchProcess.pdb
+D:\GitHub\BatchProcess\BatchProcess\bin\Debug\BatchProcess.xml

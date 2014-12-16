@@ -65,7 +65,6 @@ Public Class MainForm
         End If
     End Sub
 
-    'File Handling
     Public Sub ProcessFiles(FileExtension As String)
 
         'Process files
@@ -131,12 +130,16 @@ Public Class MainForm
         End If
 
         If CheckBoxDrawingExport.Checked = True Then
-            Call DrawingExport(ComboBoxDrawingExport.Text)
+            Call DrawingExport(ComboBoxDrawingExportFormat.Text)
         End If
 
         'Parts
         If CheckBoxPartUpdate.Checked = True Then
             Call PartUpdate()
+        End If
+
+        If CheckBoxPartExportSolids.Checked = True Then
+            Call PartExportSolids(ComboBoxPartExportSolidsFormat.Text)
         End If
 
         'Close the window
@@ -217,6 +220,59 @@ Public Class MainForm
         End If
 
         'MyDoc.Close()
+
+    End Sub
+
+    Public Sub PartExportSolids(FileType As String)
+
+        'Grabs the solid bodies and exports as file type
+        Dim MyDoc As PartDocument
+        MyDoc = CATIA.ActiveDocument
+
+        Dim MyPart As Part
+        MyPart = MyDoc.Part
+
+        Dim j As Integer
+        j = MyPart.Bodies.Count
+
+        For i = 1 To MyPart.Bodies.Count()
+
+            Dim BodySel As Body
+            BodySel = MyPart.Bodies.Item(i)
+
+            Dim MySelection As Selection
+            MySelection = MyDoc.Selection
+
+            MySelection.Clear()
+            MySelection.Add(BodySel)
+            MySelection.Copy()
+
+            'Add a new part
+            Dim NewDoc As PartDocument
+            NewDoc = CATIA.Documents.Add("Part")
+            'NewDoc = CATIA.ActiveDocument
+
+            Dim NewPart As Part
+            NewPart = NewDoc.Part
+
+            Dim NewBodySel As Body
+            NewBodySel = NewPart.Bodies.Item(1)
+
+            MySelection.Add(NewBodySel)
+            MySelection.PasteSpecial("CATPrtResultWithOutLink")
+            NewPart.Update()
+
+            'Export file
+            Dim FileName As String
+            FileName = MyPart.Name & "_" & BodySel.Name & "." & FileType
+
+            Dim SavePath As String
+            SavePath = PathDest & "\" & FileName
+
+            NewDoc.ExportData(SavePath, FileType)
+            NewDoc.Close()
+
+        Next i
 
     End Sub
 
