@@ -247,6 +247,8 @@ Public Class MainForm
             MySelection.Add(BodySel)
             MySelection.Copy()
 
+            'Skip empty part bodies
+
             'Add a new part
             Dim NewDoc As PartDocument
             NewDoc = CATIA.Documents.Add("Part")
