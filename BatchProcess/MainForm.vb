@@ -1,6 +1,7 @@
 ﻿Imports INFITF
 Imports DRAFTINGITF
 Imports MECMOD
+Imports ProductStructureTypeLib
 
 Public Class MainForm
 
@@ -240,6 +241,11 @@ Public Class MainForm
             Dim BodySel As Body
             BodySel = MyPart.Bodies.Item(i)
 
+            'Skip empty part bodies
+            If BodySel.Shapes.Count = 0 Then
+                GoTo SkipExport
+            End If
+
             Dim MySelection As Selection
             MySelection = MyDoc.Selection
 
@@ -247,16 +253,22 @@ Public Class MainForm
             MySelection.Add(BodySel)
             MySelection.Copy()
 
-            'Skip empty part bodies
+            Dim sPartName As String
+            sPartName = MyPart.Name & "_" & BodySel.Name
 
             'Add a new part
             Dim NewDoc As PartDocument
             NewDoc = CATIA.Documents.Add("Part")
-            'NewDoc = CATIA.ActiveDocument
 
             Dim NewPart As Part
             NewPart = NewDoc.Part
 
+            Dim NewProduct As Product
+            NewProduct = NewDoc.GetItem(1)
+            NewProduct.PartNumber = sPartName
+
+            'TO DO: Axis to Axis Transformation
+            'Paste body as result
             Dim NewBodySel As Body
             NewBodySel = NewPart.Bodies.Item(1)
 
@@ -265,14 +277,18 @@ Public Class MainForm
             NewPart.Update()
 
             'Export file
-            Dim FileName As String
-            FileName = MyPart.Name & "_" & BodySel.Name & "." & FileType
-
             Dim SavePath As String
-            SavePath = PathDest & "\" & FileName
+            SavePath = PathDest & "\" & sPartName & "." & FileType
 
-            NewDoc.ExportData(SavePath, FileType)
+            If FileType = "CATDrawing" Then
+                NewDoc.SaveAs(SavePath)
+            Else
+                NewDoc.ExportData(SavePath, FileType)
+            End If
+
             NewDoc.Close()
+
+SkipExport:
 
         Next i
 

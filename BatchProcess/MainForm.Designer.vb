@@ -40,7 +40,6 @@ Partial Class MainForm
         Me.CheckBoxDrawingExport = New System.Windows.Forms.CheckBox()
         Me.ComboBoxDrawingExportFormat = New System.Windows.Forms.ComboBox()
         Me.Parts = New System.Windows.Forms.TabPage()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.ComboBoxPartExportSolidsFormat = New System.Windows.Forms.ComboBox()
         Me.CheckBoxPartExportSolids = New System.Windows.Forms.CheckBox()
         Me.CheckBoxPartUpdate = New System.Windows.Forms.CheckBox()
@@ -227,7 +226,6 @@ Partial Class MainForm
         '
         'Parts
         '
-        Me.Parts.Controls.Add(Me.Label4)
         Me.Parts.Controls.Add(Me.ComboBoxPartExportSolidsFormat)
         Me.Parts.Controls.Add(Me.CheckBoxPartExportSolids)
         Me.Parts.Controls.Add(Me.CheckBoxPartUpdate)
@@ -241,31 +239,23 @@ Partial Class MainForm
         Me.Parts.Text = "Parts"
         Me.Parts.UseVisualStyleBackColor = True
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(221, 41)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(295, 17)
-        Me.Label4.TabIndex = 15
-        Me.Label4.Text = "(Destination Folder required for Batch Export)"
-        '
         'ComboBoxPartExportSolidsFormat
         '
         Me.ComboBoxPartExportSolidsFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxPartExportSolidsFormat.FormattingEnabled = True
-        Me.ComboBoxPartExportSolidsFormat.Items.AddRange(New Object() {"igs"})
-        Me.ComboBoxPartExportSolidsFormat.Location = New System.Drawing.Point(147, 36)
+        Me.ComboBoxPartExportSolidsFormat.Items.AddRange(New Object() {"3dxml", "CATPart", "igs", "stp"})
+        Me.ComboBoxPartExportSolidsFormat.Location = New System.Drawing.Point(139, 36)
         Me.ComboBoxPartExportSolidsFormat.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxPartExportSolidsFormat.Name = "ComboBoxPartExportSolidsFormat"
-        Me.ComboBoxPartExportSolidsFormat.Size = New System.Drawing.Size(68, 24)
+        Me.ComboBoxPartExportSolidsFormat.Size = New System.Drawing.Size(82, 24)
         Me.ComboBoxPartExportSolidsFormat.Sorted = True
         Me.ComboBoxPartExportSolidsFormat.TabIndex = 14
         '
         'CheckBoxPartExportSolids
         '
         Me.CheckBoxPartExportSolids.AutoSize = True
+        Me.CheckBoxPartExportSolids.Checked = True
+        Me.CheckBoxPartExportSolids.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxPartExportSolids.Location = New System.Drawing.Point(13, 40)
         Me.CheckBoxPartExportSolids.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBoxPartExportSolids.Name = "CheckBoxPartExportSolids"
@@ -342,17 +332,19 @@ Partial Class MainForm
         'CheckBoxSourceOverwrite
         '
         Me.CheckBoxSourceOverwrite.AutoSize = True
+        Me.CheckBoxSourceOverwrite.Checked = True
+        Me.CheckBoxSourceOverwrite.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBoxSourceOverwrite.Location = New System.Drawing.Point(360, 105)
         Me.CheckBoxSourceOverwrite.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckBoxSourceOverwrite.Name = "CheckBoxSourceOverwrite"
-        Me.CheckBoxSourceOverwrite.Size = New System.Drawing.Size(172, 21)
+        Me.CheckBoxSourceOverwrite.Size = New System.Drawing.Size(115, 21)
         Me.CheckBoxSourceOverwrite.TabIndex = 12
-        Me.CheckBoxSourceOverwrite.Text = "Overwrite files in place"
+        Me.CheckBoxSourceOverwrite.Text = "Save in place"
         Me.CheckBoxSourceOverwrite.UseVisualStyleBackColor = True
         '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 16!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.ClientSize = New System.Drawing.Size(565, 550)
@@ -368,17 +360,17 @@ Partial Class MainForm
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "MainForm"
         Me.Text = "BatchProcess v1.0"
-        Me.TabControl1.ResumeLayout(False)
-        Me.Drawings.ResumeLayout(False)
-        Me.Drawings.PerformLayout()
-        Me.Parts.ResumeLayout(False)
-        Me.Parts.PerformLayout()
-        Me.Products.ResumeLayout(False)
-        Me.Products.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.TabControl1.ResumeLayout(false)
+        Me.Drawings.ResumeLayout(false)
+        Me.Drawings.PerformLayout
+        Me.Parts.ResumeLayout(false)
+        Me.Parts.PerformLayout
+        Me.Products.ResumeLayout(false)
+        Me.Products.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents ButtonSourceFolder As System.Windows.Forms.Button
     Friend WithEvents TextBoxSourceFolder As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -404,7 +396,6 @@ Partial Class MainForm
     Friend WithEvents CheckBoxProductUpdate As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxPartExportSolids As System.Windows.Forms.CheckBox
     Friend WithEvents ComboBoxPartExportSolidsFormat As System.Windows.Forms.ComboBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents CheckBoxForceUpdate As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxLayerTransfer As System.Windows.Forms.CheckBox
 End Class
